@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentin Eberhardt - Portafolio</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <header>
+        <nav>
+            <ul>
+                <li> <a href="#" onclick="showTab('home')">Inicio</a></li>
+                <li><a href="#" onclick="showTab('demo')">Demostración de Testing</a></li>
+                <li><a href="#" onclick="showTab('herramientas')">Herramientas</a></li>                      <!-- FALTA AGREGAR -->
+                <li><a href="#" onclick="showTab('otros')">Otros proyectos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="content">
+        <section id="home" class="tab-content active">
+
+            <div class="hero-container">
+
+                <div class="hero-image">
+                    <div class="photo-frame">
+                        <img src="images/perfil.png" alt="Foto de Perfil">
+                    </div>
+                </div>
+
+                <div class="hero-text">
+
+                    <h1>Valentin, Eberhardt.</h1>
+                    <h2 class="subtitle">Tester enfocado en la calidad de Software</h2>
+                    <p class="tagline">Realizo testeo esencial de APIs con Postman, además de reportes detallados de errores/bugs de UI y funcionalidad. </p>
+
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/valentin-eberhardt-15b193212/" target="_blank" class="btn-social">LinkedIn</a>
+                        <a href="https://github.com/ValenEberhardt" target="_blank" class="btn-social">Github</a>
+                    </div>
+                    
+
+                    <div class="hero-btns">
+                        <a href="#" class="btn-primary" onclick="showTab('demo')">Ver demo de Testing</a>
+                        <a href="docs/CV - ValentinEberhardt.pdf" class="btn-secondary" target="_blank">Descargar CV</a>
+                    </div>
+                </div>
+
+                
+
+            </div>
+
+        </section>
+
+
+        <section id="demo" class="tab-content">
+
+            <h2>Estrategia de Pruebas: Aplicación Web Clima</h2>
+            <p>En esta seccion voy a presentar una pequeña demostracion de mis métodos a la hora de testear usando una aplicacion de prueba creada para este propósito.</p>
+            <hr>
+            <p>La aplicacion a testear consume la API Open-Meteo lo que le permite mostrar datos meteorológicos de la ciudad que se inserte en el cuadro de búsqueda.</p>
+
+            <p>Cabe destacar que el análisis será abordado desde la perspectiva de un tester que tiene disponible los requerimiento funcionales de la aplicacion, se aplicaron tecnicas de <strong>black box testing</strong> para asegurar que la lógica y la interfaz responden segun lo esperado</p>
+            <strong>Criterio de Mejora:</strong> Algunos casos marcados como <em>"Pasa"</em> incluyen observaciones. Esto se debe a que, aunque cumplen con la función técnica, existen oportunidades para optimizar la <strong>UX</strong> y la <strong>eficiencia del flujo</strong>.
+
+            <p>Si desea probar la aplicacion por su cuenta a la par de la lectura de los casos de prueba, puede encontrarla en la pestaña de proyectos o haciendo click <a href="#" class="btn-primary" onclick="showTab('otros')">aquí</a></p>
+            <p>Por último, si quiere la version más detallada de los casos de prueba haga click <a href="https://docs.google.com/spreadsheets/d/1GYDOHYbpqVM76ELlYzxPqWEBhh95kd9ByJQSRyzyrZc/edit?usp=sharing">aquí</a></p>
+
+            <div class="demo-container">
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripcion</th>
+                            <th>Estado</th>
+                            <th>Prioridad</th>
+                            <th>Pasos para reproducir</th>
+                            <th>Resultado Esperado</th>
+                            <th>Bug report</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>TC-01</td>
+                            <td>Input en el buscador (Datos válidos)</td>
+                            <td><span class="status-fail">Falla</span></td>
+                            <td>Alta</td>
+                            <td>
+                                <ol>
+                                    <li>Ir a la pagina principal (URL: http://...)</li>
+                                    <li>Ingresar una ciudad válida en la barra de búsqueda</li>
+                                    <li>Clickear el botón buscar</li>
+                                    <li>Esperar el tiempo correspondiente</li>
+                                </ol>
+                            </td>
+                            <td>
+                                <ol>
+                                    <li>
+                                        Se muestra la pagina principal con los siguientes elementos:
+                                        <ul>
+                                            <li><strong>Texto de presentacion</strong></li>
+                                            <li><strong>Buscador de ciudades</strong></li>
+                                            <li><strong>Botón "Buscar"</strong></li>
+                                        </ul>
+                                    </li>
+                                    <li> Una vez clickeado el boton "buscar" debe aparecir un mensaje de espera: <strong>"Cargando, por favor espere"</strong></li>
+                                    <li>El programa muestra el <strong>nombre, temperatura y humedad</strong> de la ciudad elegída o en su defecto un mensaje de error si la ciudad ingresada no se encuentra: <strong>"Ciudad no encontrada"</strong></li>
+
+                                </ol>
+                            </td>
+                            <td>
+                                <button class="btn-bug" onclick="toggleBug('bug-01')">BUG-01</button>                <!-- esto es un comentario -->
+                            </td> 
+                        </tr>
+                        <tr id="bug-01" class="bug-detail-row" style="display: none;">
+                            <td colspan="5">
+                                
+                                <div class="bug-card">
+                                    <h4>Ticket: BUG-01 - No se muestra la humedad</h4>
+                                    <p><strong>Severidad:</strong> Menor </p>
+                                    <p><strong>Estado:</strong> Nuevo</p>
+                                    <p><strong>Descripción:</strong> Al buscar una ciudad, el campo de humedad permanece vacío.</p>
+                                    <p><strong>Prioridad:</strong> P2 (Mayor)</p>
+                                    <p><strong>Evidencia: </strong> <a href="https://drive.google.com/file/d/1kW2Z_bOlJ7rzOJLlUSNPaHz2eyZX14S-/view?usp=drive_link">Ver Screenshot</a></p>
+                                    <p><strong>Comentarios:</strong> A la hora de mostrar los resultados finales de la busqueda, la sección de humedad permanece vacía mostarndo solo un "%".</p>
+                                </div>
+
+                                
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>TC-02</td>
+                            <td>Input en el buscador (Datos inválidos)</td>
+                            <td><span class="status-pass">Pasa</span></td>
+                            <td>Alta</td>
+                            <td>
+                                <ol>
+                                    <li>Ir a la pagina principal (URL: http://...)</li>
+                                    <li>Ingresar una ciudad inválida en la barra de búsqueda</li>
+                                    <li>Clickear el botón buscar</li>
+                                    <li>Esperar el tiempo correspondiente</li>
+                                </ol>
+                            </td>
+                            <td>
+                                <ol>
+                                    <li>
+                                        Se muestra la pagina principal con los siguientes elementos:
+                                        <ul>
+                                            <li><strong>Texto de presentacion</strong></li>
+                                            <li><strong>Buscador de ciudades</strong></li>
+                                            <li><strong>Botón "Buscar"</strong></li>
+                                        </ul>
+                                    </li>
+                                    <li>Una vez clickeado el boton "buscar" debe aparecer un mensaje de error: <strong>"CIudad no encontrada" / "Datos inválidos ingresados"</strong></li>
+                                </ol>
+                            </td>
+                            <td> <button class="btn-comment" onclick="toggleBug('comment-0')">Comentario</button> </td>   
+                            
+                            <tr id="comment-0" class="comment-detail-row" style="display: none;">
+                                <td colspan="5">
+                                    <div class="comment-card">
+                                        <h4>Comentarios:</h4>
+                                        <p>Cuando se ingresa un dato inválido ("%, #, $") y se clickea buscar, el programa trata de buscar los caracteres invalidos en la base de datos de la API. ¿Es esto correcto? Personalmente opino que si se detectaran caracteres inválidos antes de realizar la accion de Buscar, el proceso sería mas eficiente.</p>
+                                        <h4>Evidencia:</h4>
+                                        <a href="https://drive.google.com/file/d/1T6oAXc6k7apaiUctEMEQaoGW6C4xfgRZ/view?usp=drive_link">Ver video</a>
+                                        
+                                    </div>
+                                </td>
+                            </tr><!-- esto es un comentario -->
+                        </tr>
+                        <tr>
+                            <td>TC-03</td>
+                            <td>Input en el buscador (Datos nulos)</td>
+                            <td><span class="status-pass">Pasa</span></td>
+                            <td>Alta</td>
+                            <td>
+                                <ol>
+                                    <li>Ir a la pagina principal (URL: http://...)</li>
+                                    <li>No Ingresar una ciudad o vaciar barra de búsqueda</li>
+                                    <li>Clickear el botón buscar</li> 
+                                </ol>
+                            </td>
+                            <td>
+                                <ol>
+                                    <li>Se muestra la pagina principal con los siguientes elementos:
+                                        <ul>
+                                            <li><strong>Texto de presentacion</strong></li>
+                                            <li><strong>Buscador de ciudades</strong></li>
+                                            <li><strong>Botón "Buscar"</strong></li>
+                                        </ul>
+                                    </li>
+                                    <li>Una vez clickeado el boton "buscar" debe aparecer un mensaje de error: "Por favor ingrese una ciudad válida"</li>
+                                </ol>
+                            </td>
+                            <td>
+                                - 
+                            </td>
+                            
+                        </tr>
+            
+                        <tr>
+                            <td>TC-04</td>
+                            <td>Boton Toggle C°/F°</td>
+                            <td><span class="status-fail">Falla</span></td>
+                            <td>Alta</td>
+                            <td>
+                                <ol>
+                                    <li>Ir a la pagina principal (URL: http://...)</li>
+                                    <li>Ingresar una ciudad válida en la barra de búsqueda</li>
+                                    <li>Clickear el botón buscar</li>
+                                    <li>Esperar el tiempo correspondiente</li>
+                                </ol>
+                            </td>
+                            <td>
+                                <ol>
+                                    <li>Se muestra la pagina principal con los siguientes elementos:
+                                        <ul>
+                                            <li><strong>Texto de presentacion</strong></li>
+                                            <li><strong>Buscador de ciudades</strong></li>
+                                            <li><strong>Botón "Buscar"</strong></li>
+                                        </ul>
+                                    </li>
+                                    <li>Una vez clickeado el boton "buscar" debe aparecer lo siguiente:
+                                        <ul>
+                                            <li><strong>Nomre de la ciudad elegida</strong></li>
+                                            <li><strong>Temperatura</strong></li>
+                                            <li><strong>Botón toggle C°/F°</strong></li>
+                                            <li><strong>Humedad</strong></li>
+                                        </ul>
+                                    </li>
+                                    <li>Al clickear el Boton Toggle C°/F la temperatura debe cambiar a la unidad correspondiente (C° o F°) </li>
+                                </ol>
+                            </td>
+                            <td><button class="btn-bug" onclick="toggleBug('bug-02')">BUG-02</button></td>
+                        </tr>
+                        <tr id="bug-02" class="bug-detail-row" style="display: none;">
+                            <td colspan="5">
+                                <div class="bug-card">
+                                    <h4>Ticket: BUG-02 - Toggle C°/F° no funciona</h4>
+                                    <p><strong>Severidad:</strong> Menor </p>
+                                    <p><strong>Estado:</strong> En Proceso</p>
+                                    <p><strong>Descripción:</strong> Boton no funciona, la temperatura mantiene la misma unidad.</p>
+                                    <p><strong>Prioridad:</strong> P2 (Mayor)</p>
+                                    <p><strong>Evidencia: </strong> <a href="#">Ver Screenshot</a></p>
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <section id="otros" class="tab-content">
+            <h2>Proyectos</h2>
+            <p>Haz click para ver detalles</p>
+
+            <div class="projects-gallery">
+
+                <div class="project-card" onclick="focusProject(this)">
+                    <div class="project-preview">
+                        <img src="images/vista_previa_clima.png" alt="Vista previa proyecto 1">
+                        <h3>Proyecto Web para Demo Testeo</h3>
+                    </div>
+
+                    <div class="project-details">
+                        <p>Proyecto diseñado para una demostracion de diseños de casos de prueba y reportes de bugs consumiendo la API de Open-Meteo</p>
+                        
+                        <div class="project-tools">
+                            <span class="tool-tag">JavaScript</span>
+                            <span class="tool-tag">HTML5 y CSS3</span>
+                        </div>
+
+                        <a href="#" class="btn-repo">Ver repositorio</a>
+                    </div>
+                </div>
+
+
+                <div class="project-card" onclick="focusProject(this)">
+
+                </div>
+
+
+
+            </div>
+
+        </section>
+
+
+
+        <section id="herramientas" class="tab-content">
+            <h2>Herramientas que utilizo en mis proyectos</h2>
+
+            <div class="tool-grid">
+                
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS Logo">
+                        <h3>JavaScript</h3>
+                    </div>
+                    <p>Utilizado para creación de interfaces dinámicas</p>
+                    <div class="related-projects">
+                        <span>Usado en: </span>
+
+                        <a href="#" onclick="showTab('proyectos')">Web Clima</a>
+                        
+                    </div>    
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxViZyCe5Vg6NrNijiTsdXSJy9Nt-0_TcvtA&s" alt="Sheets Logo">
+                        <h3>Google Sheets</h3>
+                    </div>
+                    <p>Diseño de Casos de Prueba y Reportes de Bugs detallados</p>
+                    <div class="related-projects">
+                        <span>Usado en: </span>
+                        <a href="#" onclick="showTab('demo')">QA Demo (Web Clima)</a>
+                    </div>
+
+                </div>
+
+
+                 <div class="tool-card">
+                    <div class="tool-header">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python Logo">
+                        <h3>Python</h3>
+                    </div>
+                    <ul>
+                        <li>Creacion de scripts de automatización</li>
+                        
+                    </ul>
+                    <div class="related-projects">
+                        
+                    </div>
+          
+                </div>
+
+
+                 <div class="tool-card">
+                    <div class="tool-header">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" alt="Postman Logo">
+                        <h3>Postman</h3>
+                    </div>
+
+                    <ul>
+                        <li>Validación de APIs</li>
+                    </ul>
+
+                    <div class="related-projects">
+                        <span>Usado en: </span>
+                        <a href="#" onclick="showTab('demo')">QA Demo (Web Clima)</a>
+                    </div>
+
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="Github Logo">
+                        <h3>Github</h3>
+                    </div>
+                    <p></p>
+
+                </div>
+
+                
+
+            </div>
+        </section>
+
+
+
+    </main>
+
+    <footer>
+        <p>Comunicate conmigo! <a href="#">LinkedIn</a></p>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>

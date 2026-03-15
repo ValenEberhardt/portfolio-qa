@@ -1,0 +1,361 @@
+body {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    color: #333;
+}
+
+nav {
+    background: #483D8B;
+    padding: 1rem;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 20px;
+}
+
+nav a {
+    color: white ;
+    text-decoration:none;
+    font-weight: bold;
+}
+
+.tab-content {
+   display: none; 
+   padding: 2rem;
+   max-width: 900px;
+   margin: auto;
+}
+
+
+.active {
+    display: block; 
+}
+
+.qa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.qa-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout:auto;
+}
+
+.qa-table th, .qa-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.qa-table th:nth-child(6) { width: 500%; }
+
+.qa-table td {
+    word-wrap: break-word; /* Rompe el texto largo para que no estire la celda */
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.status-pass {color: #27ae60; font-weight: bold; }
+.status-fail {color: #e74c3c; font-weight: bold; }
+
+.bug-card {
+    background: #fff5f5;
+    border-left: 5px solid #e74c3c;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 1);
+}
+
+.comment-card {
+    background: #fff5f5;
+    border-left: 5px solid #3c9de7;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 1);
+}
+
+.btn-bug {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-comment {
+    background: #3c8ce7;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bug-detail-row{
+    background-color: #fdfdfd;
+}
+
+.comment-detail-row{
+    background-color: #fdfdfd;
+
+}
+
+
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.tool-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    transition: transform 0.3 ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+.tool-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.tool-header img{
+    width: 40px;
+    height: 40px;
+}
+
+.related-projects {
+    margin-top: 15px;
+    font-size: 0.85rem;
+}
+
+.related-projects span {
+    font-weight: bold;
+    display: block;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+}
+
+.related-projects a {
+    color: #3498db;
+    text-decoration: none;
+    background: #ebf5fb;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.related-projects a:hover {
+    background: #3498db;
+    color: white;
+}
+
+
+.projects-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.project-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: fit-content;
+}
+
+.project-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.project-preview img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.project-preview h3 {
+    padding: 15px;
+    margin: 0;
+}
+
+.project-details {
+    max-height: 0;
+    opacity: 0;
+    padding: 0 15px;
+    overflow: hidden;
+    transition: all 0.4 ease;
+    background: #fdfdfd;
+}
+
+.project-card.expanded {
+    grid-column: 1 / -1;
+    border-color: #3498db;
+    transform: scale(1.02);
+}
+
+
+.project-card.expanded .project-details {
+    max-height: 500px;
+    opacity: 1;
+    padding: 20px 15px;
+    border-top: 1px solid #eee;
+}
+
+/* Etiquetas de herramientas dentro del proyecto */
+.tool-tag {
+    display: inline-block;
+    background: #e1e8ed;
+    color: #2c3e50;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    margin: 5px 5px 15px 0;
+    font-weight: bold;
+}
+
+
+.project-card.expanded {
+    cursor: default; /* Cambia el cursor cuando ya está abierto */
+    margin-bottom: 20px; /* Da espacio extra al expandirse */
+}
+
+/* Evita que los detalles se vean antes de tiempo */
+.project-card:not(.expanded) .project-details * {
+    visibility: hidden;
+}
+
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px; /* Aumentamos el espacio entre columnas */
+    padding: 60px 0;
+    flex-wrap: wrap;
+    max-width: 1100px; /* Limita el ancho total */
+    margin: 0 auto;    /* Centra todo el bloque */
+}
+
+.hero-text {
+    flex: 1;
+    min-width: 10px;
+    
+}
+
+.hero-text h1 {
+    font-size: 3.5rem; /* Un poco más grande para jerarquía */
+    margin-bottom: 15px;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+.tagline {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+    border-left:4px solid #483D8B;
+    padding-left: 15px;
+}
+
+.hero-text {
+    flex: 2; 
+    min-width: 350px; /* Evita que se haga demasiado flaco */
+}
+
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    min-width: 280px;
+}
+
+.photo-frame {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #483D8B;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Botones de Redes Sociales */
+
+.btn-social{
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-right: 10px;
+    display: inline-block;
+    background: #2c3e50;
+    color: white;
+    transition: 0.3s;
+}
+
+
+.social-links {
+    display: flex;
+    gap: 15px; /* Usar gap en lugar de margin-right es más moderno y limpio */
+    margin-top: 20px;
+}
+
+.btn-social.secondary {
+    background: #ecf0f1;
+    color: #2c3e50;
+}
+
+.btn-social:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+
+.subtitle {
+    display: block; /* Asegura que ocupe su propia línea */
+    margin-bottom: 10px;
+    font-weight: 600;
+}
